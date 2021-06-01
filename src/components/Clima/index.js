@@ -1,7 +1,12 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import BG from "../../assets/bg1.jpg";
-import { ButtonSurprise, MainContainer, ImgWrapper } from "./style";
+import BG from "../../assets/bg.jpg";
+import {
+  ButtonSurprise,
+  MainContainer,
+  ImgWrapper,
+  GlobalStyle,
+} from "./style";
 
 export default function WeatherTemp() {
   const [location, setLocation] = useState(false);
@@ -37,21 +42,27 @@ export default function WeatherTemp() {
     return <h1>Carregando o clima..</h1>;
   } else {
     return (
-      <MainContainer>
-        <ImgWrapper />
-        <h3>
-          Clima e suas coordenadas ({weather["weather"][0]["description"]})
-        </h3>
-        <hr />
-        <ul>
-          <li>Temperatura atual: {weather["main"]["temp"]}º</li>
-          <li>Temperatura máxima: {weather["main"]["temp_max"]}º</li>
-          <li>Temperatura minima: {weather["main"]["temp_min"]}º</li>
-          <li>Pressão: {weather["main"]["pressure"]} hpa</li>
-          <li>Umidade: {weather["main"]["humidity"]}%</li>
-        </ul>
-        <ButtonSurprise>Surpresa para Maria</ButtonSurprise>
-      </MainContainer>
+      <>
+        <GlobalStyle />
+
+        <MainContainer url={BG}>
+          <h3>
+            Clima e suas coordenadas ({weather["weather"][0]["description"]})
+          </h3>
+          <hr />
+
+          <ul>
+            <li>Temperatura atual: {weather["main"]["temp"]}º</li>
+            <li>Temperatura máxima: {weather["main"]["temp_max"]}º</li>
+            <li>Temperatura minima: {weather["main"]["temp_min"]}º</li>
+            <li>Pressão: {weather["main"]["pressure"]} hpa</li>
+            <li>Umidade: {weather["main"]["humidity"]}%</li>
+          </ul>
+          <ButtonSurprise onClick={() => alert("Você deseja namorar comigo?")}>
+            Surpresa para Maria
+          </ButtonSurprise>
+        </MainContainer>
+      </>
     );
   }
 }

@@ -1,7 +1,15 @@
-import styled from "styled-components";
+import styled, { createGlobalStyle } from "styled-components";
 
+export const GlobalStyle = createGlobalStyle`
+  *{
+    padding: 0;
+    margin: 0;
+  }
+`;
 export const MainContainer = styled.div`
-  background-color: #2596be;
+  min-height: 100vh;
+  height: auto;
+  background-image: url(${({ url }) => url});
 `;
 
 export const ButtonSurprise = styled.button`
@@ -16,4 +24,7 @@ export const ButtonSurprise = styled.button`
   width: 30vw;
 `;
 
-export const ImgWrapper = styled.img``;
+export const ImgWrapper = styled.img`
+  position: absolute;
+  z-index: -1;
+`;
